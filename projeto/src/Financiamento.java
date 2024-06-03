@@ -1,21 +1,21 @@
 public class Financiamento {
     // Atributos
-    double valorImovel;
-    int prazoFinanciamento;
-    double taxaJurosAnual;
+    private double valorImovel;
+    private int prazoFinanciamento;
+    private double taxaJurosAnual;
 
     // Método construtor
-    Financiamento(double valorImovel, int prazoFinanciamento, double taxaJurosAnual){
+    public Financiamento(double valorImovel, int prazoFinanciamento, double taxaJurosAnual){
         this.valorImovel = valorImovel;
         this.prazoFinanciamento = prazoFinanciamento;
         this.taxaJurosAnual = taxaJurosAnual;
     }
 
-    double calcularPagMensal(){
+    public double calcularPagMensal(){
         return (this.valorImovel / (prazoFinanciamento * 12) * (1+(taxaJurosAnual/12)));
     }
 
-    double calcularTotalPag() {
+    public double calcularTotalPag() {
         return calcularPagMensal() + this.prazoFinanciamento * 12;
     }
 }
