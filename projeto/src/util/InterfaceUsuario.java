@@ -45,7 +45,7 @@ public static int pedirPrazoFinanciamento() {
             System.out.println("Prazo invalido! O numero não pode ser negativo pois deve ser um ano.");
             isValid = false;
         } else if (prazo > 75) {
-            System.out.println("Prazo invalido! O maximo de anos que se fode financiar um imovel é de 75 anos");
+            System.out.println("Prazo invalido! O maximo de anos que se pode financiar um imovel é de 75 anos");
             isValid = false;
         }
     } while (!isValid); // enquanto isValid for falso, o loop continuará
@@ -53,25 +53,25 @@ public static int pedirPrazoFinanciamento() {
 }
 
 
-        public static double pedirTaxaJuros(){
-            Scanner scanner = new Scanner(System.in);
-            double taxa;
-            boolean isValid;
-            do {
-                System.out.println("Qual a taxa de juros anual do financiamento?");
-                taxa = scanner.nextDouble();
-                isValid = true;
+public static double pedirTaxaJuros(){
+    Scanner scanner = new Scanner(System.in);
+    double taxa;
+    boolean isValid;
+    do {
+        System.out.println("Qual a taxa de juros anual do financiamento?");
+        taxa = scanner.nextDouble();
+        isValid = true;
 
-                if (taxa > 12) {
-                    System.out.println("Taxa de juros anual invalida! O limite maximo é de 12% ao ano. ");
-                    isValid = false;
-                } else if (taxa < 0) {
-                    System.out.println("Valor de taxa invalida! A taxa deve ser um numero positivo.");
-                    isValid = false;
-                }
-            } while (!isValid);
-            return taxa;
+        if (taxa > 12) {
+            System.out.println("Taxa de juros anual invalida! O limite maximo é de 12% ao ano. ");
+            isValid = false;
+        } else if (taxa < 0) {
+            System.out.println("Valor de taxa invalida! A taxa deve ser um numero positivo.");
+            isValid = false;
         }
+    } while (!isValid);
+    return taxa;
+}
 }
 
 

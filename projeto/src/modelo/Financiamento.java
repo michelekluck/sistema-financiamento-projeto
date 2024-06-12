@@ -39,5 +39,4 @@ public class Financiamento {
         System.out.println("Valor do financiamento: " + calcularTotalPag());
         System.out.println("Valor do imovel: " + getValorImovel());
     }
-
 }
