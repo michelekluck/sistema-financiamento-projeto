@@ -4,9 +4,9 @@ import main.Main;
 
 public class Financiamento {
     // Atributos
-    private double valorImovel;
-    private int prazoFinanciamento;
-    private double taxaJurosAnual;
+    protected double valorImovel;
+    protected int prazoFinanciamento;
+    protected double taxaJurosAnual;
 
     // Método construtor
     public Financiamento(double valorImovel, int prazoFinanciamento, double taxaJurosAnual){
@@ -28,11 +28,11 @@ public class Financiamento {
     }
 
     public double calcularPagMensal(){
-        return (this.valorImovel / (prazoFinanciamento * 12) * (1+(taxaJurosAnual/12)));
+        return (this.valorImovel / (prazoFinanciamento * 12)) * (1+(taxaJurosAnual/12));
     }
 
     public double calcularTotalPag() {
-        return calcularPagMensal() + this.prazoFinanciamento * 12;
+        return this.calcularPagMensal() * this.prazoFinanciamento * 12;
     }
 
     public void mostrarDados(){
@@ -40,3 +40,4 @@ public class Financiamento {
         System.out.println("Valor do imovel: " + getValorImovel());
     }
 }
+
