@@ -7,9 +7,6 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args){
-
-        // criação de um novo objeto da classe InterfaceUsuario
-        InterfaceUsuario interfaceUsuario = new InterfaceUsuario();
         // criação de uma lista do tipo financimaneto chamado listaFinanciamento
         List<Financiamento> listaFinanciamento = new ArrayList<Financiamento>();
 
@@ -17,11 +14,13 @@ public class Main {
         double valorImovel = InterfaceUsuario.pedirValorImovel(); // chamamos o método e armazenamos seu retorno dentro da variavel
         double taxaJuros = InterfaceUsuario.pedirTaxaJuros();
         int prazoFinanciamento = InterfaceUsuario.pedirPrazoFinanciamento();
-        listaFinanciamento.add(new modelo.Casa(valorImovel, prazoFinanciamento, taxaJuros)); // adiciono um novo objeto CASA na lista
-        listaFinanciamento.add(new modelo.Casa(60000, 30, 5));
-        listaFinanciamento.add(new modelo.Apartamento(100000, 15, 12));
-        listaFinanciamento.add(new modelo.Apartamento(340000, 15, 6));
-        listaFinanciamento.add(new modelo.Terreno(800000, 50, 10));
+        int tamanhoArea = 20;
+        int tamanhoTerreno = 10;
+        listaFinanciamento.add(new modelo.Casa(valorImovel, prazoFinanciamento, taxaJuros, tamanhoArea, tamanhoTerreno )); // adiciono um novo objeto CASA na lista
+        listaFinanciamento.add(new modelo.Casa(60000, 30, 5, 10, 20));
+        listaFinanciamento.add(new modelo.Apartamento(100000, 15, 12, 2, 7));
+        listaFinanciamento.add(new modelo.Apartamento(340000, 15, 6, 1, 8));
+        listaFinanciamento.add(new modelo.Terreno(800000, 50, 10, "Residencial"));
 
         double valorTotalImoveis = 0; // criamos uma variavel valorTotalImoveis que começa com o valor 0
         double valorTotalFinanciamentos = 0; // criamos uma variavel valorTotalFinanciamentos que começa com o valor 0

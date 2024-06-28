@@ -1,8 +1,6 @@
 package modelo;
-import util.InterfaceUsuario;
-import main.Main;
 
-public class Financiamento {
+public abstract class Financiamento {
     // Atributos
     protected double valorImovel;
     protected int prazoFinanciamento;
@@ -19,25 +17,16 @@ public class Financiamento {
         return this.valorImovel;
     }
 
-    public int getPrazoFinanciamento() {
-        return this.prazoFinanciamento;
-    }
-
     public double getTaxaJurosAnual() {
         return this.taxaJurosAnual;
     }
 
-    public double calcularPagMensal(){
-        return (this.valorImovel / (prazoFinanciamento * 12)) * (1+(taxaJurosAnual/12));
-    }
+    public abstract double calcularPagMensal();
 
-    public double calcularTotalPag() {
-        return this.calcularPagMensal() * this.prazoFinanciamento * 12;
-    }
+    public abstract double calcularTotalPag();
 
-    public void mostrarDados(){
-        System.out.println("Valor do financiamento: " + calcularTotalPag());
-        System.out.println("Valor do imovel: " + getValorImovel());
-    }
+    public abstract void mostrarDados();
 }
 
+//        System.out.println("Valor do financiamento: " + calcularTotalPag());
+//        System.out.println("Valor do imovel: " + getValorImovel());
