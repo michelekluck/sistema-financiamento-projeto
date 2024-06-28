@@ -1,7 +1,7 @@
 package modelo;
 
 public class Terreno extends Financiamento{
-    protected String tipoZona;
+    private String tipoZona;
 
     public Terreno(double valorImovel, int prazoFinanciamento, double taxaJurosAnual, String tipoZona){
         super(valorImovel, prazoFinanciamento, taxaJurosAnual);
