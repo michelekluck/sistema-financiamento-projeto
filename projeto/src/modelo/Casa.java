@@ -1,5 +1,7 @@
 package modelo;
 
+import util.ValorNegativoException;
+
 public class Casa extends Financiamento{
     private int tamanhoArea;
     private int tamanhoTerreno;
@@ -25,6 +27,10 @@ public class Casa extends Financiamento{
 
     public double calcularTotalPag(){
         return this.calcularPagMensal() * this.prazoFinanciamento * 12;
+    }
+
+    private void ValidarValorNegativo(double valor) throws ValorNegativoException{
+        throw new ValorNegativoException("Valor " + valor + "é inválido, pois o valor do imovel deve ser positivo.");
     }
 
     public void mostrarDados(){

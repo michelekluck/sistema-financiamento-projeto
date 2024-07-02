@@ -5,7 +5,30 @@ import java.util.Scanner;
 // enquanto (while) o usuario digitar um numero negativo ficaremos (do) perguntando o valor do imovel novamente em loop
 // o loop acaba quando o usuario digitar um numero valido (ou seja, um numero positivo)
 public class InterfaceUsuario {
-        public static double pedirValorImovel(){
+    public static double pedirValorImovel(){
+        Scanner scanner = new Scanner (System.in);
+        double valor = 0; // variavel do tipo double inicializada com 0
+        boolean valid = false; // valid é uma variavel booleana inicializada com ' false', usada para controlar o loop
+
+        while(!valid){ // esse loop while continua executando enquanto 'valid' for 'false'. !valid é 'true'
+            try {
+                System.out.println("Qual o valor do imóvel?"); // pedimos ao usuario o valor do imovel
+                valor = scanner.nextDouble();
+
+                if(valor > 0) { // se o valor lido for maior do que 0, define 'valid' como 'true' (o que fará o loop terminar)
+                    valid = true;
+                } else {
+                    System.out.println("Valor invalido! O valor deve ser um numero positivo.");
+                }
+            } catch (Exception e){
+                System.out.println("Valor invalido! O valor deve ser um numero positivo.");
+                scanner.next();
+            }
+        }
+        return valor;
+    }
+
+        /*public static double pedirValorImovel(){
             Scanner scanner = new Scanner(System.in);
             double valor;
             do {
@@ -16,7 +39,7 @@ public class InterfaceUsuario {
                 }
             } while (valor < 0 );
             return valor;
-        }
+        }*/
 
 //vamos verificar novamente se o numero digitado pelo usuario é valido
 // criamos a variavel chamada 'prazo' que armazenará o valor digitado pelo usuario
