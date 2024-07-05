@@ -7,13 +7,13 @@ public abstract class Financiamento {
     protected double taxaJurosAnual;
 
     // Método construtor
-    public Financiamento(double valorImovel, int prazoFinanciamento, double taxaJurosAnual){
+    public Financiamento(double valorImovel, int prazoFinanciamento, double taxaJurosAnual) {
         this.valorImovel = valorImovel;
         this.prazoFinanciamento = prazoFinanciamento;
         this.taxaJurosAnual = taxaJurosAnual;
     }
 
-    public double getValorImovel(){
+    public double getValorImovel() {
         return this.valorImovel;
     }
 
@@ -21,7 +21,9 @@ public abstract class Financiamento {
         return this.taxaJurosAnual;
     }
 
-    public abstract double calcularPagMensal();
+    public double calcularPagMensal() {
+        return (this.valorImovel / (this.prazoFinanciamento * 12)) * (1 + (this.taxaJurosAnual / 12));
+    }
 
     public abstract double calcularTotalPag();
 

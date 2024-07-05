@@ -1,12 +1,16 @@
 package modelo;
 
-import util.ValorNegativoException;
+import util.AcrescimoMaiorQueJurosException;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 
 public class Casa extends Financiamento {
-    private int tamanhoArea;
-    private int tamanhoTerreno;
-    private double taxaJurosMensal;
-    private int valorAcrescimo;
+    private final int tamanhoArea;
+    private final int tamanhoTerreno;
+    private final double taxaJurosMensal;
+    private final double valorAcrescimo;
 
     public Casa(double valorImovel, int prazoFinanciamento, double taxaJurosAnual, int tamanhoArea, int tamanhoTerreno) {
         super(valorImovel, prazoFinanciamento, taxaJurosAnual);
@@ -24,29 +28,55 @@ public class Casa extends Financiamento {
         return this.tamanhoTerreno;
     }
 
-    public double CalcularJurosMensal() {
-        return (this.valorImovel / (prazoFinanciamento * 12)) * this.taxaJurosMensal;
+    public double getTaxaJurosMensal() {
+        return this.taxaJurosMensal;
     }
+
+    public double getValorAcrescimo() {
+        return this.valorAcrescimo;
+    }
+
+    public double jurosMensalDecimal() {
+        double pagMensal = super.calcularPagMensal();
+        double jurosMensal = this.taxaJurosMensal;
+
+        return pagMensal * jurosMensal / 100;
+    }
+
 
     @Override
     public double calcularPagMensal() {
-        return (this.valorImovel / (prazoFinanciamento * 12)) * (1 + this.taxaJurosMensal) + valorAcrescimo;
+        double valorJuros = this.jurosMensalDecimal();
+        double valorAcrescimo = getValorAcrescimo();
+        try {
+            validarJuros(valorJuros, valorAcrescimo);
+        } catch (AcrescimoMaiorQueJurosException e) {
+            valorAcrescimo = valorJuros;
+        }
+        return super.calcularPagMensal() + valorAcrescimo;
     }
 
     public double calcularTotalPag() {
-        return this.calcularPagMensal() * this.prazoFinanciamento * 12;
+        return calcularPagMensal() * this.prazoFinanciamento * 12;
     }
 
+
+    private void validarJuros(double valorJuros, double valorAcrescimo) throws AcrescimoMaiorQueJurosException {
+        if (valorAcrescimo > valorJuros) {
+            throw new AcrescimoMaiorQueJurosException("O valor do acréscimo não pode ser maior do que o valor do juros mensal.");
+        }
+    }
 
     public void mostrarDados() {
         System.out.println("Valor do financiamento da casa: " + calcularTotalPag());
         System.out.println("Valor da casa: " + getValorImovel());
     }
 
+
     public static void main(String[] args) {
-        Casa casa = new Casa(12000, 10, 12, 10, 10);
-        System.out.println(casa.CalcularJurosMensal());
-        System.out.println(casa.calcularPagMensal());
-        System.out.println(casa.calcularTotalPag());
+        Casa casa = new Casa(300000, 30, 12, 10, 10);
+        System.out.printf("R$ %.2f\n", casa.calcularPagMensal());
+        System.out.printf("R$ %.2f\n", casa.calcularTotalPag());
+        System.out.printf("R$ %.2f\n", casa.jurosMensalDecimal());
     }
 }
