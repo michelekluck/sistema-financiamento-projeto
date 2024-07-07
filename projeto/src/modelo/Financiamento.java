@@ -1,6 +1,8 @@
 package modelo;
 
-public abstract class Financiamento {
+import java.io.Serializable;
+
+public abstract class Financiamento implements Serializable {
     // Atributos
     protected double valorImovel;
     protected int prazoFinanciamento;
@@ -19,6 +21,10 @@ public abstract class Financiamento {
 
     public double getTaxaJurosAnual() {
         return this.taxaJurosAnual;
+    }
+
+    public int getPrazoFinanciamento() {
+        return this.prazoFinanciamento;
     }
 
     public double calcularPagMensal() {

@@ -2,9 +2,6 @@ package modelo;
 
 import util.AcrescimoMaiorQueJurosException;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
 
 public class Casa extends Financiamento {
     private final int tamanhoArea;
@@ -72,11 +69,14 @@ public class Casa extends Financiamento {
         System.out.println("Valor da casa: " + getValorImovel());
     }
 
-
-    public static void main(String[] args) {
-        Casa casa = new Casa(300000, 30, 12, 10, 10);
-        System.out.printf("R$ %.2f\n", casa.calcularPagMensal());
-        System.out.printf("R$ %.2f\n", casa.calcularTotalPag());
-        System.out.printf("R$ %.2f\n", casa.jurosMensalDecimal());
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("R$ ").append(this.getValorImovel());
+        sb.append(", Prazo: ").append(this.getPrazoFinanciamento());
+        sb.append(" anos, Taxa anual: ").append(this.getTaxaJurosAnual()).append("%");
+        sb.append(", Área: ").append(this.getTamanhoArea()).append("m²");
+        sb.append(", Terreno: ").append(this.getTamanhoTerreno()).append("m²");
+        return sb.toString();
     }
 }
