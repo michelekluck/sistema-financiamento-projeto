@@ -32,8 +32,6 @@ public abstract class Financiamento implements Serializable {
     }
 
     public abstract double calcularTotalPag();
-
-    public abstract void mostrarDados();
 }
 
 //        System.out.println("Valor do financiamento: " + calcularTotalPag());
