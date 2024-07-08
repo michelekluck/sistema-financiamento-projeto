@@ -38,14 +38,15 @@ public class Apartamento extends Financiamento {
         // esse método retorna o total do pagamento
     }
 
+    // todos toString() são override
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("R$ ").append(this.getValorImovel());
-        sb.append(", Prazo: ").append(this.getPrazoFinanciamento());
-        sb.append(" anos, Taxa anual: ").append(this.getTaxaJurosAnual()).append("%");
-        sb.append(", Andar: ").append(this.getNumeroAndar());
-        sb.append(", Nº de vagas na garagem: ").append(this.getVagasGaragem());
-        return sb.toString();
+        StringBuilder sb = new StringBuilder(); // cria uma instancia de 'StringBuilder' ->  é usada para criar e manipular sequencias de caracteres
+        sb.append("R$ ").append(this.getValorImovel()); // adiciona 'R$' e o valor do imovel ao stringbuilder
+        sb.append(", Prazo: ").append(this.getPrazoFinanciamento()); // adiciona   ', prazo' e o prazo de financiamento ao stringbuilder
+        sb.append(" anos, Taxa anual: ").append(this.getTaxaJurosAnual()).append("%"); // adiciona ' anos, taxa anual' e a taxa de juros anual
+        sb.append(", Andar: ").append(this.getNumeroAndar()); // adiciona ', andar' e o numero do andar do apartamento
+        sb.append(", Nº de vagas na garagem: ").append(this.getVagasGaragem()); // adiciona ', n de vagas na garagem' e quantas vagas de garagem o ap tem
+        return sb.toString(); // converte o conteudo do 'StringBuilder' (sb) para string e a retorna
     }
 }
